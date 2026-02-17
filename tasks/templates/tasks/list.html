@@ -45,11 +45,49 @@
 		border-color: #e59400;
 	}
 
+	.poster-img {
+        width: 50px;
+        height: 75px;
+        border-radius: 5px;
+        margin-right: 15px;
+        object-fit: cover;
+        vertical-align: middle;
+    }
+
+    .platform-badge {
+        font-size: 10px;
+        text-transform: uppercase;
+        background: #fb5607;
+        padding: 2px 6px;
+        border-radius: 10px;
+        margin-left: 10px;
+        font-weight: bold;
+    }
+
+    .import-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .import-buttons .btn {
+        flex: 1;
+        margin: 0 5px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
 </style>
 <h1 style="text-align: center; color: #fb5607; font-size: 125px;        text-shadow: -10px 0 black, 0 10px black, 10px 0 black, 0 -10px black;
 
 "><b>TO DO LIST</b></h1>
 <div  class="center-column">
+	<div class="import-buttons">
+		<a href="{% url 'import_tmdb' 8 %}" class="btn btn-dark" style="background-color: #E50914; border:none;">+ Netflix</a>
+		<a href="{% url 'import_tmdb' 119 %}" class="btn btn-primary" style="background-color: #00A8E1; border:none;">+ Prime</a>
+		<a href="{% url 'import_tmdb' 350 %}" class="btn btn-secondary" style="background-color: #000; border:none;">+ Apple TV</a>
+	</div>
+
 	<form method="POST" action="/">
 		{% csrf_token %}
 		{{form.title}}
@@ -57,17 +95,29 @@
 	</form>
 
 	<div class="todo-list">
-	{% for task in tasks %}
-		<div class="item-row">
-			<a class="btn btn-sm btn-info" href = "{% url 'update_task' task.id %}">Update</a>
-			<a class="btn btn-sm btn-danger" href = "{% url 'delete' task.id %}">Delete</a>
-			{% if task.complete == True %}
-			<strike>{{task}}</strike>
-			{% else %}
-			<span>{{task}}</span>
-			{% endif %}
+    {% for task in tasks %}
+			<div class="item-row d-flex align-items-center">
+				{% if task.poster_path %}
+					<img src="https://image.tmdb.org/t/p/w200{{task.poster_path}}" class="poster-img" alt="Poster">
+				{% endif %}
 
-		</div>
-	{% endfor %}
-	</div>
+				<div style="flex-grow: 1;">
+					{% if task.complete == True %}
+						<strike>{{task.title}}</strike>
+					{% else %}
+						<span>{{task.title}}</span>
+					{% endif %}
+
+					{% if task.platform %}
+						<span class="platform-badge">{{task.platform}}</span>
+					{% endif %}
+				</div>
+
+				<div class="actions">
+					<a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
+					<a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
+				</div>
+			</div>
+    {% endfor %}
+    </div>
 </div>

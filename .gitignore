@@ -1,0 +1,27 @@
+# Python / Django
+__pycache__/
+*.py[cod]
+*$py.class
+.venv
+venv/
+ENV/
+.env
+db.sqlite3
+staticfiles/
+media/
+
+# Node / JS (pour Husky et Commitizen)
+node_modules/
+.pnpm-debug.log
+.eslintcache
+
+# Environnement / IDE
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Poetry
+.pytest_cache/
+.mypy_cache/
+dist/
