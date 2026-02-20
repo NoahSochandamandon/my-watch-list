@@ -131,3 +131,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 TMDB_API_KEY = os.getenv("TMDB_API_KEY")
 BASE_URL = os.getenv("TMDB_BASE_URL")
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "login"
+
+FC_CLIENT_ID = os.getenv("FC_CLIENT_ID")
+FC_CLIENT_SECRET = os.getenv("FC_CLIENT_SECRET")
+FC_BASE_URL = os.getenv("FC_BASE_URL")
+FC_REDIRECT_URI = os.getenv("FC_REDIRECT_URI")

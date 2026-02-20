@@ -82,6 +82,13 @@
 
 "><b>TO DO LIST</b></h1>
 <div  class="center-column">
+	<div class="d-flex justify-content-between align-items-center mb-3">
+			<span style="font-weight: bold;">Compte : {{request.user}}</span>
+			<form action="{% url 'logout' %}" method="post" style="margin:0;">
+					{% csrf_token %}
+					<button type="submit" class="btn btn-sm btn-outline-danger">Déconnexion</button>
+			</form>
+	</div>	
 	<div class="import-buttons">
 		<a href="{% url 'import_tmdb' 8 %}" class="btn btn-dark" style="background-color: #E50914; border:none;">+ Netflix</a>
 		<a href="{% url 'import_tmdb' 119 %}" class="btn btn-primary" style="background-color: #00A8E1; border:none;">+ Prime</a>

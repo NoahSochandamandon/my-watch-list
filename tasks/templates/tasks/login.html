@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<style>
+	body {
+		background-color: #3a86ff; /* Ton bleu actuel */
+	}
+
+	.center-column {
+		width: 450px;
+		margin: 80px auto;
+		padding: 30px;
+		background-color: #fff;
+		border-radius: 8px;
+		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+	}
+
+	h2 {
+		color: #fb5607;
+		text-align: center;
+		font-weight: bold;
+		margin-bottom: 20px;
+	}
+
+	input[type="text"], input[type="password"] {
+		width: 100%;
+		padding: 10px;
+		margin: 10px 0;
+		border: 1px solid #d3d3d3;
+		border-radius: 4px;
+	}
+
+	.btn-submit {
+		background-color: #8338ec;
+		color: white;
+		width: 100%;
+		font-weight: bold;
+		border: none;
+		padding: 10px;
+		margin-top: 10px;
+	}
+
+    .btn-submit:hover {
+        background-color: #6a2cc2;
+        color: white;
+    }
+
+	.footer-text {
+		text-align: center;
+		margin-top: 20px;
+		font-size: 14px;
+	}
+</style>
+
+<div class="center-column">
+	<h2>CONNEXION</h2>
+
+	<form method="POST">
+		{% csrf_token %}
+		{{form.as_p}}
+		<input class="btn btn-submit" type="submit" value="Se connecter">
+	</form>
+
+  <div class="mt-4 text-center">
+    <p>Ou utilisez un service public :</p>
+    <a href="{% url 'fc_login' %}" class="btn" style="padding: 0; border: none;">
+        <img src="https://partenaires.franceconnect.gouv.fr/images/fc_bouton_v2.png" 
+             alt="S'identifier avec FranceConnect" 
+             style="width: 250px;">
+    </a>
+</div>
+
+	<div class="footer-text">
+		Pas encore de compte ? <a href="{% url 'register' %}" style="color: #3a86ff;">S'inscrire</a>
+	</div>
+</div>
